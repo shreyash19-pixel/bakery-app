@@ -17,10 +17,26 @@ const Register = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name: field, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [field]: value,
+    }));
+
+    setErrors((prevData) => ({
+      ...prevData,
+      [field]: false,
+    }));
+
+    
+  };
+
+  const handleBlur = (e) => {
+    const { name: field, value } = e.target;
+    setErrors((prevData) => ({
+      ...prevData,
+      [field]: !value,
     }));
   };
 
@@ -38,6 +54,9 @@ const Register = () => {
 
     if (!email || !name || !password) {
       return;
+    }
+    else{
+      alert("Registered....")
     }
 
     try {
@@ -59,6 +78,8 @@ const Register = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
+              onBlur={handleBlur}
+              isEmpty={errors.email}
             />
             {errors.email && <RegErr>Please enter Email</RegErr>}
           </RegInputWrapper>
@@ -69,6 +90,8 @@ const Register = () => {
               placeholder="Name"
               value={formData.name}
               onChange={handleChange}
+              onBlur={handleBlur}
+              isEmpty={errors.name}
             />
             {errors.name && <RegErr>Please enter Name</RegErr>}
           </RegInputWrapper>
@@ -79,6 +102,8 @@ const Register = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
+              onBlur={handleBlur}
+              isEmpty={errors.password}
             />
             {errors.password && <RegErr>Please enter Password</RegErr>}
           </RegInputWrapper>

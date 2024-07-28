@@ -34,7 +34,7 @@ export const RegForm = styled.form`
 
 export const RegInputWrapper = styled.div`
     width: 100%;
-    min-height: 60px;
+    min-height: 69px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -43,7 +43,7 @@ export const RegInputWrapper = styled.div`
 export const RegInput = styled.input`
     width: 100%;
     height: 40px;
-    border: 1px solid #ccc;
+    border: 1px solid ${(props) => (props.isEmpty ? "red" : "#ccc")};
     border-radius: 5px;
     padding : 10px 15px;
 `
