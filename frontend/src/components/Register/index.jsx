@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+// import axios from 'axios';
 import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr } from '../../styles/Register';
 
 const Register = () => {
@@ -55,13 +56,12 @@ const Register = () => {
     if (!email || !name || !password) {
       return;
     }
-    else{
-      alert("Registered....")
-    }
+    
 
     try {
-      // Make your axios request here
-      // Assuming registration is successful:
+      const response = await axios.post("http://localhost:5000/api/v1/auth/register", { email: email, name: name, password: password });
+      const token = response.data.token
+      localStorage.setItem("token", JSON.stringify(token))
     } catch (error) {
       console.error('Registration error:', error);
     }

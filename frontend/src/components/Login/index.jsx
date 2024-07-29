@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr } from '../../styles/Register';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -14,7 +18,7 @@ const Login = () => {
     });
 
     const handleChange = (e) => {
-        const { email, name, password } = formData;
+        const { email, password } = formData;
 
         const { name: field, value } = e.target;
 
@@ -25,7 +29,6 @@ const Login = () => {
 
         const newErrors = {
             email: !email,
-            name: !name,
             password: !password,
         };
 
@@ -35,17 +38,16 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { email, name, password } = formData;
+        const { email, password } = formData;
 
         const newErrors = {
             email: !email,
-            name: !name,
             password: !password,
         };
 
         setErrors(newErrors);
 
-        if (!email || !name || !password) {
+        if (!email || !password) {
             return;
         }
         else {
@@ -53,7 +55,15 @@ const Login = () => {
         }
 
         try {
-            // Make your axios request here
+            const response = await axios.post("http://localhost:5000/api/v1/auth/login", { email: email, password: password })
+                if (response.status === 200)
+                {
+                    const token = response.data.token
+                    localStorage.setItem("token", JSON.stringify(token))
+                    navigate('/homePage')
+                }
+            
+            console.log(response);
         } catch (error) {
             console.error('Registration error:', error);
         }
