@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 // import axios from 'axios';
-import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr } from '../../styles/Register';
+import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr, StyledLink } from '../../styles/Register';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -109,10 +108,10 @@ const Register = () => {
           </RegInputWrapper>
           <RegButton type="submit">Register</RegButton>
         </RegForm>
-        <Link to="/login">
+        <StyledLink to="/login">
           <p>Already have an account?</p>
           <RegButton>Login</RegButton>
-        </Link>
+        </StyledLink>
       </RegsiterWrapper>
     </RegisterContainer>
   );

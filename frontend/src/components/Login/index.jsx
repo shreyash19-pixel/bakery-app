@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr } from '../../styles/Register';
+import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr, StyledLink } from '../../styles/Register';
 
 const Login = () => {
 
@@ -94,7 +94,12 @@ const Login = () => {
                         {errors.password && <RegErr>Please enter Password</RegErr>}
                     </RegInputWrapper>
                     <RegButton type="submit">Login</RegButton>
+                    <StyledLink to="/">
+                        <p>Don't have an account?</p>
+                        <RegButton>Register</RegButton>
+                    </StyledLink>
                 </RegForm>
+                
             </RegsiterWrapper>
         </RegisterContainer>
     );
