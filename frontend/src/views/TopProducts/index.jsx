@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   ProductCatalog,
   ProductHeadline,
@@ -10,6 +10,8 @@ import {
   ProductImageWrapper,
   ProductImageDetails,
   AddToCartButton,
+  ProductBanner,
+  ProductButton,
 } from "../../styles/TopProducts";
 
 import Image1 from "../../assests/CatalogImages/Image1.jpg";
@@ -76,8 +78,18 @@ const TopProducts = () => {
           </ProductCard>
         ))}
       </ProductCatalog>
+      <ProductBanner>
+        <h1>
+          20% Off Your <br /> First Order
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+          aperiam, iure provident dolore in ipsum unde
+        </p>
+        <ProductButton>Learn More</ProductButton>
+      </ProductBanner>
     </ProductWrapper>
   );
-}
+};
 
-export default TopProducts
+export default TopProducts;

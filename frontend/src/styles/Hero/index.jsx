@@ -8,7 +8,6 @@ export const HeroInfo = styled.div`
   background-repeat: no-repeat;
   background-size: cover; // Ensure the background covers the container
   background-position: center;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -16,7 +15,6 @@ export const HeroInfo = styled.div`
   gap: 10px;
   padding-left: 20px;
   position: relative;
- 
 
   h1 {
     font-size: 60px;
@@ -44,7 +42,7 @@ export const BackgroundFilter = styled.div`
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 0;
-`
+`;
 
 export const InfoButton = styled.button`
   margin-top: 10px;
