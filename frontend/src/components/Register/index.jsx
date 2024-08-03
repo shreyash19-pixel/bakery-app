@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 // import axios from 'axios';
-import { RegInput, RegisterContainer, RegsiterWrapper, RegButton, RegForm, RegInputWrapper, RegErr, StyledLink } from '../../styles/Register';
+import {
+  RegInput,
+  RegisterContainer,
+  RegsiterWrapper,
+  RegButton,
+  RegForm,
+  RegInputWrapper,
+  RegErr,
+  StyledLink,
+} from "../../styles/Register";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    password: '',
+    email: "",
+    name: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({
@@ -28,8 +39,6 @@ const Register = () => {
       ...prevData,
       [field]: false,
     }));
-
-    
   };
 
   const handleBlur = (e) => {
@@ -55,14 +64,19 @@ const Register = () => {
     if (!email || !name || !password) {
       return;
     }
-    
 
     try {
-      const response = await axios.post("http://localhost:5000/api/v1/auth/register", { email: email, name: name, password: password });
-      const token = response.data.token
-      localStorage.setItem("token", JSON.stringify(token))
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/auth/register",
+        { email: email, name: name, password: password }
+      );
+      if (response.status === 201) {
+        const token = response.data.token;
+        localStorage.setItem("token", JSON.stringify(token));
+        navigate("/login");
+      }
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error("Registration error:", error);
     }
   };
 

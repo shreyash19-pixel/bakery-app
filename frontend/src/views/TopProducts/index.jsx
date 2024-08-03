@@ -26,7 +26,7 @@ const demoProducts = [
     title: "Honeycomb Bread",
     price: "$15",
     description: "Delicious chocolate cake with rich frosting.",
-    imageUrl: Image1,
+    imageUrl: "../../assests/CatalogImages/Image6.jpg",
   },
   {
     title: "Danish Pastry with Fruits",
