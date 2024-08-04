@@ -19,14 +19,24 @@
       "type": "text"
     },
     "ProdImg": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "Price": {
+      "type": "string"
+    },
+    "Button": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "string"
     }
   }
 }

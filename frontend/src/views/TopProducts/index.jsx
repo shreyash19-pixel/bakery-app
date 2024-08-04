@@ -1,8 +1,8 @@
 import React from "react";
 import {
+  ProductWrapper,
   ProductCatalog,
   ProductHeadline,
-  ProductWrapper,
   ProductCard,
   ProductImage,
   ProductTitle,
@@ -13,6 +13,7 @@ import {
   ProductBanner,
   ProductButton,
 } from "../../styles/TopProducts";
+
 
 import Image1 from "../../assests/CatalogImages/Image1.jpg";
 import Image2 from "../../assests/CatalogImages/Image2.jpg";
@@ -26,7 +27,7 @@ const demoProducts = [
     title: "Honeycomb Bread",
     price: "$15",
     description: "Delicious chocolate cake with rich frosting.",
-    imageUrl: "../../assests/CatalogImages/Image6.jpg",
+    imageUrl:Image1,
   },
   {
     title: "Danish Pastry with Fruits",

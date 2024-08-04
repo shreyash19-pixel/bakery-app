@@ -4,6 +4,7 @@ import { HomeContainer } from "../../styles/Homepage";
 import Nav from "../../views/Nav";
 import Hero from "../../views/Hero";
 import TopProducts from "../../views/TopProducts";
+import ExploreMore from "../../views/ExploreMore";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const Homepage = () => {
       <Nav />
       <Hero />
       <TopProducts />
+      <ExploreMore/>
     </HomeContainer>
   );
 };

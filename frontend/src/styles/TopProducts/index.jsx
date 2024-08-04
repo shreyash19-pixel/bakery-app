@@ -101,7 +101,7 @@ export const ProductBanner = styled.div`
   height: 50vh;
   background-image: url(${ProjectBanner});
   background-repeat: no-repeat;
-  background-size: cover; // Ensure the background covers the container
+  background-size: cover;
   background-position: center;
   margin: 40px;
   position: relative;
