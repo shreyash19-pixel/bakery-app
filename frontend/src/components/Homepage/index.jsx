@@ -5,6 +5,7 @@ import Nav from "../../views/Nav";
 import Hero from "../../views/Hero";
 import TopProducts from "../../views/TopProducts";
 import ExploreMore from "../../views/ExploreMore";
+import AboutUs from "../../views/AboutUs";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -50,7 +51,8 @@ const Homepage = () => {
       <Nav />
       <Hero />
       <TopProducts />
-      <ExploreMore/>
+      <ExploreMore />
+      <AboutUs />
     </HomeContainer>
   );
 };
