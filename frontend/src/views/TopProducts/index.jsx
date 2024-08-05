@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 import {
+  ProductWrapper,
   ProductCatalog,
   ProductHeadline,
-  ProductWrapper,
   ProductCard,
   ProductImage,
   ProductTitle,
@@ -10,7 +10,10 @@ import {
   ProductImageWrapper,
   ProductImageDetails,
   AddToCartButton,
+  ProductBanner,
+  ProductButton,
 } from "../../styles/TopProducts";
+
 
 import Image1 from "../../assests/CatalogImages/Image1.jpg";
 import Image2 from "../../assests/CatalogImages/Image2.jpg";
@@ -24,7 +27,7 @@ const demoProducts = [
     title: "Honeycomb Bread",
     price: "$15",
     description: "Delicious chocolate cake with rich frosting.",
-    imageUrl: Image1,
+    imageUrl:Image1,
   },
   {
     title: "Danish Pastry with Fruits",
@@ -76,8 +79,18 @@ const TopProducts = () => {
           </ProductCard>
         ))}
       </ProductCatalog>
+      <ProductBanner>
+        <h1>
+          20% Off Your <br /> First Order
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
+          aperiam, iure provident dolore in ipsum unde
+        </p>
+        <ProductButton>Learn More</ProductButton>
+      </ProductBanner>
     </ProductWrapper>
   );
-}
+};
 
-export default TopProducts
+export default TopProducts;

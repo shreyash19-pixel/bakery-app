@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ProjectBanner from "../../assests/ProductBanner.jpg";
 
 export const ProductWrapper = styled.div`
   width: 100%;
@@ -93,4 +94,51 @@ export const AddToCartButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+`;
+
+export const ProductBanner = styled.div`
+  width: 100vw;
+  height: 50vh;
+  background-image: url(${ProjectBanner});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin: 40px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+
+  h1 {
+    color: #933c24;
+    font-size: 40px;
+    font-family: "Sansita Swashed", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    z-index: 1;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: 2.8px;
+  }
+
+  p {
+    color: white;
+    font-size: 20px;
+    z-index: 1;
+  }
+  `
+
+  export const ProductButton = styled.button`
+  margin-top: 10px;
+  padding: 12px 50px;
+  background-color: #933c24;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1;
 `;

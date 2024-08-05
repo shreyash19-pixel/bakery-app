@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  HomeContainer
-} from "../../styles/Homepage";
+import { HomeContainer } from "../../styles/Homepage";
 import Nav from "../../views/Nav";
 import Hero from "../../views/Hero";
 import TopProducts from "../../views/TopProducts";
-
+import ExploreMore from "../../views/ExploreMore";
 
 const Homepage = () => {
-  
-
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const varToken = JSON.parse(localStorage.getItem("token"));
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found");
+        }
+
+        const varToken = JSON.parse(token);
         const response = await fetch(
           "http://localhost:5000/api/v1/bakery/homePage",
           {
@@ -25,21 +25,32 @@ const Homepage = () => {
         );
 
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error(
+            `Network response was not ok: ${response.statusText}`
+          );
         }
+
+        const data = await response.json();
       } catch (err) {
-        console.log(err.message);
-        navigate("/login");
+        console.error("Error fetching data:", err.message);
+        if (
+          err.message === "No token found" ||
+          err.message === "Network response was not ok"
+        ) {
+          navigate("/login");
+        }
       }
     };
+
     fetchData();
-  }, []);
+  }, [navigate]);
 
   return (
     <HomeContainer>
-        <Nav />
+      <Nav />
       <Hero />
-      <TopProducts/>
+      <TopProducts />
+      <ExploreMore/>
     </HomeContainer>
   );
 };
