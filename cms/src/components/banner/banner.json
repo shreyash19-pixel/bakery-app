@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_banner_banners",
+  "info": {
+    "displayName": "Banner",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "pretitle": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "text"
+    },
+    "Button": {
+      "type": "string"
+    },
+    "Learn": {
+      "type": "string"
+    }
+  }
+}

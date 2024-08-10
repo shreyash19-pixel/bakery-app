@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_about_us_aboutuses",
+  "info": {
+    "displayName": "aboutUs",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "aboutLinks": {
+      "displayName": "aboutLinks",
+      "type": "component",
+      "repeatable": true,
+      "component": "about-links.about-links"
+    }
+  }
+}

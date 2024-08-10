@@ -39,31 +39,31 @@ const demoProducts = [
     imageUrl: Image3,
   },
 ];
-const AboutUs = () => {
+const AboutUs = ({aboutUs, featured}) => {
+
+  const baseURL = "http://localhost:1337"
+  
   return (
     <AboutWrapper>
       <AboutUsBanner>
         <AboutUsWrapper>
-          <h1>About Us</h1>
+          <h1>{aboutUs.Heading}</h1>
           <p>
-            Our artisan breads, pastries, and cakes are made with care and
-            creativity, ensuring every bite is a delightful experience. Whether
-            you're stopping by for a treat or celebrating a special moment,
-            Keithston is here to make your day a little sweeter.
+            {aboutUs.Description}
           </p>
-          <AboutButton>Read More</AboutButton>
+          <AboutButton>{aboutUs.Button}</AboutButton>
         </AboutUsWrapper>
       </AboutUsBanner>
-      <AboutHeadline>Featured Treats</AboutHeadline>
+      <AboutHeadline>{featured["Heading"]}</AboutHeadline>
       <AboutCatalog>
-        {demoProducts.map((Product, index) => (
+        {featured.products.data.map((Product, index) => (
           <AboutCard key={index}>
             <AboutImageWrapper>
-              <AboutImage src={Product.imageUrl} alt={Product.title} />
+              <AboutImage src={`${baseURL}${Product["attributes"]["ProdImg"]["data"][0]["attributes"]["url"]}`} alt={Product["attributes"]["Name"]} />
               <AboutImageDetails>
-                <AboutPrice>{Product.price}</AboutPrice>
-                <AboutTitle>{Product.title}</AboutTitle>
-                <AddToCartButton>Add to Cart</AddToCartButton>
+                <AboutPrice>{Product["attributes"]["Price"]}</AboutPrice>
+                <AboutTitle>{Product["attributes"]["Name"]}</AboutTitle>
+                <AddToCartButton>{Product["attributes"]["Button"]}</AddToCartButton>
               </AboutImageDetails>
             </AboutImageWrapper>
           </AboutCard>

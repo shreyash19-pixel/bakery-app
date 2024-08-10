@@ -16,7 +16,12 @@ export const HeroInfo = styled.div`
   padding-left: 20px;
   position: relative;
 
-  h1 {
+  div{
+    z-index: 3;
+    padding-top: 30px;
+
+    h1 {
+    width: 424px;
     font-size: 60px;
     color: white;
     line-height: 1.2;
@@ -24,14 +29,16 @@ export const HeroInfo = styled.div`
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
-    z-index: 1;
+
   }
 
   p {
     font-size: 40px;
     color: #e9bd8c;
-    z-index: 1;
   }
+  }
+
+  
 `;
 
 export const BackgroundFilter = styled.div`
@@ -45,7 +52,7 @@ export const BackgroundFilter = styled.div`
 `;
 
 export const InfoButton = styled.button`
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 12px 50px;
   background-color: #933c24;
   color: white;
@@ -53,5 +60,5 @@ export const InfoButton = styled.button`
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
-  z-index: 1;
+  
 `;

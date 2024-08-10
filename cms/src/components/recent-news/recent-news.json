@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_recent_news_recent_news",
+  "info": {
+    "displayName": "recentNews",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "news": {
+      "displayName": "news",
+      "type": "component",
+      "repeatable": true,
+      "component": "news.news"
+    }
+  }
+}

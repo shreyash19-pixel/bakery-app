@@ -1,38 +1,62 @@
-import React from 'react'
+import React, { useState } from "react";
 import {
   Navlink,
   NavLogo,
   NavWrapper,
   BakeryLogo,
   ProfileIcon,
+  ProfileIconWrap,
+  ResponsiveNav,
 } from "../../styles/Nav";
 import Logo from "../../assests/HeroImages/Logo.svg";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faBurger, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = () => {
 
-    const Links = [
-      { id: "#Home", name: "Home" },
-      { id: "#contact", name: "Contact Us" },
-      { id: "#About", name: "About" },
-      { id: "#profile", name: "Profile" },
-    ];
+const Nav = ({ logo, navLinks }) => {
+  const baseURL = "http://localhost:1337";
+  const [nav, setNav] = useState(false);
+
+  nav
+    ? (document.body.style.overflowY = "hidden")
+    : (document.body.style.overflowY = "auto");
+
+  // function scrollFunc(e)
+  // {
+  //   console.log(e.target.getElementById("top-products"));
+
+  // }
+
+  // document.addEventListener("scroll", scrollFunc)
 
   return (
     <NavWrapper>
       <NavLogo>
-        <BakeryLogo src={Logo} alt="Logo" />
+        <BakeryLogo src={`${baseURL}${logo}`} alt="Logo" />
       </NavLogo>
       <Navlink>
-        {Links.map((link, index) => (
-          <a href={link.id} key={index}>
-            {link.name}
+        {navLinks.map((link) => (
+          <a href={link.URL} key={link.id}>
+            {link.Name}
           </a>
         ))}
       </Navlink>
-      <ProfileIcon icon={faCartShopping} />
+      <ResponsiveNav nav={nav}>
+        {navLinks.map((link) => (
+          <a href={link.URL} key={link.id}>
+            {link.Name}
+          </a>
+        ))}
+        <div onClick={() => setNav(!nav)}>
+          <ProfileIcon icon={faXmark} /> 
+        </div>
+      </ResponsiveNav>
+
+      <ProfileIconWrap>
+        <ProfileIcon icon={faCartShopping} />
+        <ProfileIcon icon={faBurger} onClick={() => setNav(!nav)} />
+      </ProfileIconWrap>
     </NavWrapper>
   );
-}
+};
 
-export default Nav
+export default Nav;

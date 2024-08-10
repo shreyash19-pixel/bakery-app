@@ -12,22 +12,31 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
-      "type": "string"
+    "HomePage": {
+      "type": "dynamiczone",
+      "components": [
+        "hamburger.hamburger",
+        "banner.banner",
+        "top-products.top-products",
+        "first-order.first-order",
+        "explore.explore"
+      ]
+    },
+    "Logo": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "Navlinks": {
-      "displayName": "NavLinks",
       "type": "component",
       "repeatable": true,
       "component": "navlinks.nav-links"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product"
-    },
-    "category": {
-      "type": "string"
     }
   }
 }

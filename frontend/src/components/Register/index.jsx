@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 // import axios from 'axios';
 import {
   RegInput,
@@ -11,10 +12,14 @@ import {
   RegInputWrapper,
   RegErr,
   StyledLink,
+  PasswordIcon,
+  PasswordIconWrap,
 } from "../../styles/Register";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -40,14 +45,25 @@ const Register = () => {
       [field]: false,
     }));
   };
+  
+  const handleFocus = () => {
+    setFocused(true)
+  }
 
   const handleBlur = (e) => {
+    setFocused(false)
     const { name: field, value } = e.target;
     setErrors((prevData) => ({
       ...prevData,
       [field]: !value,
     }));
   };
+
+  const showPassword = (e) => {
+    e.stopPropagation()
+    setShowPass(!showPass)
+
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -110,14 +126,18 @@ const Register = () => {
           </RegInputWrapper>
           <RegInputWrapper>
             <RegInput
-              type="password"
+              type= {showPass ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               onBlur={handleBlur}
+              onFocus={handleFocus}
               isEmpty={errors.password}
             />
+            <PasswordIconWrap onClick={showPassword}>
+              {showPass ? <PasswordIcon focused = {focused} icon = {faEyeSlash} /> : <PasswordIcon focused = {focused} icon = {faEye} />}
+            </PasswordIconWrap>
             {errors.password && <RegErr>Please enter Password</RegErr>}
           </RegInputWrapper>
           <RegButton type="submit">Register</RegButton>

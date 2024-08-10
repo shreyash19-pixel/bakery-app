@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import RegisterBackground from '../../assests/HeroImages/registerBackground.jpg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const RegisterContainer = styled.div`
     width: 100%;
@@ -13,6 +14,7 @@ export const RegisterContainer = styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding-inline: 12px;
 `
 
 
@@ -46,10 +48,11 @@ export const RegForm = styled.form`
 
 export const RegInputWrapper = styled.div`
     width: 100%;
-    min-height: 69px;
+    min-height: 79px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
 `;
 
 export const RegInput = styled.input`
@@ -62,6 +65,7 @@ export const RegInput = styled.input`
     background : none;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s, box-shadow 0.3s;
+    
 
     &:focus {
         border-color: #007BFF;
@@ -70,6 +74,18 @@ export const RegInput = styled.input`
         outline: none;
     };
 `
+
+export const PasswordIconWrap = styled.span`
+    position: absolute;
+    right: 20px;
+    top: 12px;
+`
+
+export const PasswordIcon = styled(FontAwesomeIcon)`
+    color: ${(props) => (props.focused ? "black" : "white")};
+    cursor: pointer;
+`   
+
 export const RegErr = styled.p`
     color: red;
 `

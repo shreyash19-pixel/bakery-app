@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_top_products_top_products",
+  "info": {
+    "displayName": "TopProducts",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  }
+}
