@@ -8,6 +8,7 @@ import ExploreMore from "../../views/ExploreMore";
 import AboutUs from "../../views/AboutUs";
 import useFetch from "../../hooks/useFetch";
 import Footer from "../Footer";
+import Cart from "../../views/Cart";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -54,8 +55,8 @@ const Homepage = () => {
   if(loading) return <div>Loading....</div>
   if(error) return <div>{error}</div>
 
-  const banner = data["attributes"]["HomePage"][0]
-  const topProducts = data["attributes"]["HomePage"][1]["products"]["data"]
+  const banner = data["attributes"]["HomePage"][0] 
+  const topProducts = data["attributes"]["HomePage"][1]["products"]["data"] 
   const firstOrder = data["attributes"]["HomePage"][2]
   const explore = data["attributes"]["HomePage"][3]
   const aboutUs = data["attributes"]["HomePage"][4]
@@ -72,6 +73,7 @@ const Homepage = () => {
       <ExploreMore explore = {explore}  />
       <AboutUs aboutUs = {aboutUs} featured = {featured} />
       <Footer />
+      <Cart/>
     </HomeContainer>
   );
 };

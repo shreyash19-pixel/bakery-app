@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import AboutUs from "../../assests/AboutUs2.jpg";
+import AboutUs from "../../assests/AboutUs.svg";
 
 export const AboutWrapper = styled.div`
   width: 100%;
@@ -22,10 +22,9 @@ export const AboutUsBanner = styled.div`
   margin: 40px;
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding: 30px 40px;
- 
 `;
 
 export const AboutUsWrapper = styled.div`
@@ -33,11 +32,11 @@ export const AboutUsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
   z-index: 1;
 
   h1 {
-    color: black;
+    color: #e9bd8c;
     font-size: 45px;
     font-family: "Sansita Swashed", system-ui;
     font-optical-sizing: auto;
@@ -65,7 +64,7 @@ export const AboutButton = styled.button`
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
-`;  
+`;
 
 export const AboutHeadline = styled.h1`
   font-size: 50px;
@@ -150,4 +149,3 @@ export const AddToCartButton = styled.button`
     background-color: #0056b3;
   }
 `;
-

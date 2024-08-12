@@ -11,6 +11,7 @@ export const NavWrapper = styled.div`
   align-items: center;
   padding: 15px 20px;
   z-index: 4;
+  background-color: ${({ scrolled }) => (scrolled ? "black" : "")};
 `;
 
 export const NavLogo = styled.div`
@@ -35,11 +36,12 @@ export const Navlink = styled.div`
   }
 
   a {
-    color: white;
     font-size: 22px;
     font-family: "Poppins", sans-serif;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: ${({ scrolled }) => (scrolled ? 800 : 500)};
+    color: white;
+    transition: background-color 0.3s ease-in-out;
 
     &:hover {
       color: #e9bd8c;
@@ -73,6 +75,14 @@ export const ProfileIcon = styled(FontAwesomeIcon)`
   }
 `;
 
+export const left = keyframes`
+  from {
+            transform: translate(-100%);
+        }
+        to {
+            transform: translate(0);
+        }
+`;
 
 export const ResponsiveNav = styled.div`
   display: none;
@@ -90,8 +100,7 @@ export const ResponsiveNav = styled.div`
     background-color: white;
     left: 0;
     top: 0;
-    transition: transform .3s ease-in-out;
-    transform: ${(props) => (props.nav ? "translate(100%)" : "translate(-100%)")}
+    animation: ${left} 0.4s ease-out;
   }
 
   a {
