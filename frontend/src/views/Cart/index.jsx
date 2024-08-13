@@ -21,13 +21,10 @@ const Cart = () => {
 
   // Create a state to track the quantity for each cart item
   const [quantities, setQuantities] = useState(cart.map(() => 1));
-  console.log(quantities);
+  // console.log(quantities);
   // Initialize with 1 for each item
 useEffect(() => {
   setQuantities(cart.map(() => 1));
-  console.log(cart);
-  console.log(cart[0]["attributes"]["Price"].slice(1,));
-  
 }, [cart]);
   const increaseQuantity = (index) => {
     setQuantities((prevQuantities) =>
