@@ -15,19 +15,30 @@ import {
 } from "../../styles/TopProducts";
 import { AppContext } from "../../ContextApi/AppContext";
 
-
 const TopProducts = ({ topProducts, firstOrder }) => {
   const baseURL = "http://localhost:1337";
   const { cart, setCart } = useContext(AppContext);
-  
-  // useEffect(() => {
-  //   localStorage.setItem("cart", JSON.stringify(cart))
-  // }, [cart]);
-  const addToCart = (id) => {
-    const selectedProduct = topProducts[id];
-    setCart((prevCart) => [...prevCart, selectedProduct]);
-  };
 
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+  const addToCart = (id) => {
+    const { Name, Price } = topProducts[id]["attributes"];
+    const ProdImg =
+      topProducts[id]["attributes"]["ProdImg"]["data"][0]["attributes"]["url"];
+
+    const isProductExists = cart.find((prod) => prod.Name === Name);
+
+    if (!isProductExists) {
+      setCart([...cart, { Name, Price, ProdImg, quantity: 1 }]);
+    } else {
+      setCart((prevCart) =>
+        prevCart.map((prod) =>
+          prod.Name === Name ? { ...prod, quantity: prod.quantity + 1 } : prod
+        )
+      );
+    }
+  };
 
   return (
     <ProductWrapper id="top-products">

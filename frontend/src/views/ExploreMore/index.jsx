@@ -29,6 +29,7 @@ const ExploreMore = ({ explore }) => {
     }, 500); 
   };
 
+  // console.log(explore);
 
   const baseURL = "http://localhost:1337";
 
