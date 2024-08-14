@@ -5,7 +5,14 @@ const {StatusCodes} = require("http-status-codes")
 const register = async (req, res) => {
     try
     {
-        console.log(req.body);
+        const {email} = req.body
+        const checkExistingUser = await User.findOne({email})
+
+        if(checkExistingUser.email)
+        {   
+            return res.status(StatusCodes.CONFLICT).send("Email already exists")
+        }
+
         const user = await User.create({...req.body})
         const token = await user.jwtCreate()
         res.status(StatusCodes.CREATED).json({token})

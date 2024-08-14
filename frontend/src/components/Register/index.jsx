@@ -20,6 +20,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false)
   const [focused, setFocused] = useState(false)
+  const [userExist, setUserExist] = useState("")
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -92,13 +93,17 @@ const Register = () => {
         navigate("/login");
       }
     } catch (error) {
-      console.error("Registration error:", error);
+      setUserExist(error.response.data)
     }
+
+   
+    
   };
 
   return (
     <RegisterContainer>
       <RegsiterWrapper>
+      <div>{userExist}</div>
         <RegForm onSubmit={handleSubmit}>
           <RegInputWrapper>
             <RegInput

@@ -33,6 +33,13 @@ export const RegsiterWrapper = styled.div`
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     padding: 30px;
     text-align: center;
+
+    div:first-child{
+        color: red;
+        margin-bottom: 20px;
+        min-height: 20px;
+    }
+
     `
 
 export const RegForm = styled.form`
