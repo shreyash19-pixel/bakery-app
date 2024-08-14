@@ -1,21 +1,39 @@
-import styled from "styled-components";
+import {styled,keyframes} from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+export const left = keyframes`
+  from {
+            transform: translate(100%);
+        }
+        to {
+            transform: translate(0);
+        }
+`;
 
 export const CartContainer = styled.div`
   width: 100%;
   max-width: 350px;
-  max-height: 100dvh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  height: 100dvh;
   padding: 20px;
-  gap: 20px;
   background-color: #e9bd8c;
   position: fixed;
   top: 0px;
   right: 0px;
   z-index: 4;
+  animation: ${left} 0.4s ease-out;
 `;
+
+export const CartScrollWrap = styled.div`
+  width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  scrollbar-width: none;
+`
 
 export const CartHeader = styled.div`
   width: 100%;
@@ -46,6 +64,26 @@ export const CartDetails = styled.div`
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 `;
+
+export const EmptyCartWrap = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+  span{
+    font-size: 24px;
+  }
+`
+
+export const CartIcon = styled(FontAwesomeIcon)`
+  color: black;
+  font-size: 45px;
+`
+
 export const CartDetailsLeft = styled.div`
   display: flex;
   justify-content: center;

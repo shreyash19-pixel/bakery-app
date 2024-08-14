@@ -17,12 +17,10 @@ import { AppContext } from "../../ContextApi/AppContext";
 
 const TopProducts = ({ topProducts, firstOrder }) => {
   const baseURL = "http://localhost:1337";
-  const { cart, setCart, setQuantities } = useContext(AppContext);
+  const { cart, setCart, setIsCartVisible} = useContext(AppContext);
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
   const addToCart = (id) => {
+    setIsCartVisible(true)
     const { Name, Price } = topProducts[id]["attributes"];
     const ProdImg =
       topProducts[id]["attributes"]["ProdImg"]["data"][0]["attributes"]["url"];
@@ -30,22 +28,9 @@ const TopProducts = ({ topProducts, firstOrder }) => {
     const isProductExists = cart.find((prod) => prod.Name === Name);
 
     if (!isProductExists) {
-      setCart((prevCart) => {
-        const newCart = [...prevCart, { Name, Price, ProdImg, quantity: 1 }];
-        setQuantities(newCart.map((prod) => prod.quantity));
-        return newCart;
-      });
+      setCart([...cart, {Name, Price, ProdImg,Quantity: 1}])
     } else {
-      setCart((prevCart) =>
-        prevCart.map((prod) =>
-          prod.Name === Name ? { ...prod, quantity: prod.quantity + 1 } : prod
-        )
-      );
-      setQuantities((prevQuantities) =>
-        prevQuantities.map((quantity, i) =>
-          cart[i].Name === Name ? quantity + 1 : quantity
-        )
-      );
+      setCart(cart.map((prod) => prod.Name === Name ? {...prod, Quantity: prod.Quantity + 1} : prod))
     }
   };
   
@@ -61,7 +46,7 @@ const TopProducts = ({ topProducts, firstOrder }) => {
                 alt={product["attributes"].Name}
               />
               <ProductImageDetails>
-                <ProductPrice>${product["attributes"].Price}</ProductPrice>
+                <ProductPrice>{product["attributes"].Price}</ProductPrice>
                 <ProductTitle>{product["attributes"].Name}</ProductTitle>
                 <AddToCartButton onClick={() => addToCart(index)}>
                   {product["attributes"].Button}

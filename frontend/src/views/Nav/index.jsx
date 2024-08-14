@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navlink,
   NavLogo,
@@ -14,11 +14,14 @@ import {
   faBurger,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { AppContext } from "../../ContextApi/AppContext";
 
 const Nav = ({ logo, navLinks }) => {
   const baseURL = "http://localhost:1337";
   const [nav, setNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const {isCartVisible,setIsCartVisible} = useContext(AppContext)
 
   nav
     ? (document.body.style.overflowY = "hidden")
@@ -66,7 +69,7 @@ const Nav = ({ logo, navLinks }) => {
       )}
 
       <ProfileIconWrap>
-        <ProfileIcon icon={faCartShopping} />
+        <ProfileIcon icon={faCartShopping} onClick={() => setIsCartVisible(!isCartVisible)} />
         <ProfileIcon icon={faBurger} onClick={() => setNav(!nav)} />
       </ProfileIconWrap>
     </NavWrapper>
