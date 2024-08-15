@@ -18,7 +18,7 @@ import { faTimes, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { AppContext } from "../../ContextApi/AppContext";
 
 const Cart = () => {
-  const { cart, setCart,isCartVisible,setIsCartVisible } = useContext(AppContext);
+  const { cart, setCart} = useContext(AppContext);
   const baseURL = "http://localhost:1337";
 
   
@@ -44,12 +44,17 @@ const Cart = () => {
     return prodPrice
   }
 
+  const closeCart = () => {
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.remove("openCart")
+  }
+
   return (
-    (isCartVisible &&  <CartContainer>
+   <div className="show-cart">
       <CartScrollWrap>
       <CartHeader>
         <h3>ORDER</h3>
-        <CrossIcon icon={faTimes} onClick={() => setIsCartVisible(false)} />
+        <CrossIcon icon={faTimes} onClick={closeCart} />
       </CartHeader>
       {cart.length > 0 ? (
         cart.map((prods, index) => {
@@ -78,7 +83,7 @@ const Cart = () => {
           </EmptyCartWrap>
       )}
       </CartScrollWrap>
-    </CartContainer>)
+    </div>
   );
 };
 

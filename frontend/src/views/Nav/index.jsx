@@ -8,20 +8,17 @@ import {
   ProfileIconWrap,
   ResponsiveNav,
 } from "../../styles/Nav";
-import Logo from "../../assests/HeroImages/Logo.svg";
+
 import {
   faCartShopping,
   faBurger,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { AppContext } from "../../ContextApi/AppContext";
 
 const Nav = ({ logo, navLinks }) => {
   const baseURL = "http://localhost:1337";
   const [nav, setNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  const {isCartVisible,setIsCartVisible} = useContext(AppContext)
 
   nav
     ? (document.body.style.overflowY = "hidden")
@@ -29,19 +26,24 @@ const Nav = ({ logo, navLinks }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const section = document.getElementById("top-products"); 
+      const section = document.getElementById("top-products");
       const sectionTop = section.getBoundingClientRect().top;
 
       if (sectionTop <= 0) {
-        setScrolled(true); 
+        setScrolled(true);
       } else {
-        setScrolled(false); 
+        setScrolled(false);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleCart = () => {
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.add("openCart")
+  };
 
   return (
     <NavWrapper scrolled={scrolled}>
@@ -69,7 +71,7 @@ const Nav = ({ logo, navLinks }) => {
       )}
 
       <ProfileIconWrap>
-        <ProfileIcon icon={faCartShopping} onClick={() => setIsCartVisible(!isCartVisible)} />
+        <ProfileIcon icon={faCartShopping} onClick={handleCart} />
         <ProfileIcon icon={faBurger} onClick={() => setNav(!nav)} />
       </ProfileIconWrap>
     </NavWrapper>

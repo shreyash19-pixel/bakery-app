@@ -1,27 +1,7 @@
-import {styled,keyframes} from "styled-components";
+import {styled} from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const left = keyframes`
-  from {
-            transform: translate(100%);
-        }
-        to {
-            transform: translate(0);
-        }
-`;
 
-export const CartContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  height: 100dvh;
-  padding: 20px;
-  background-color: #e9bd8c;
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  z-index: 4;
-  animation: ${left} 0.4s ease-out;
-`;
 
 export const CartScrollWrap = styled.div`
   width: 100%;

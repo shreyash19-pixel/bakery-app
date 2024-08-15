@@ -63,6 +63,7 @@ const Homepage = () => {
   const featured = data["attributes"]["HomePage"][5]
   const logo = data["attributes"]["Logo"]["data"][0]["attributes"]["url"]
   const navLinks = data["attributes"]["Navlinks"]
+
   
 
   return (

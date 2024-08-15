@@ -9,12 +9,9 @@ import { AppContext } from '../../ContextApi/AppContext';
 const Home = () => {
   
   const [cart, setCart] = useState([]);
-  const [isCartVisible, setIsCartVisible] = useState(false);
   const sharedData = {
     cart,
-    setCart,
-    isCartVisible, 
-    setIsCartVisible
+    setCart
   };
   return (
     <BrowserRouter>

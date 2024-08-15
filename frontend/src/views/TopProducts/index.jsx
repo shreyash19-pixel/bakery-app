@@ -17,10 +17,13 @@ import { AppContext } from "../../ContextApi/AppContext";
 
 const TopProducts = ({ topProducts, firstOrder }) => {
   const baseURL = "http://localhost:1337";
-  const { cart, setCart, setIsCartVisible} = useContext(AppContext);
+  const { cart, setCart} = useContext(AppContext);
 
   const addToCart = (id) => {
-    setIsCartVisible(true)
+
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.add("openCart")
+
     const { Name, Price } = topProducts[id]["attributes"];
     const ProdImg =
       topProducts[id]["attributes"]["ProdImg"]["data"][0]["attributes"]["url"];
@@ -33,6 +36,7 @@ const TopProducts = ({ topProducts, firstOrder }) => {
       setCart(cart.map((prod) => prod.Name === Name ? {...prod, Quantity: prod.Quantity + 1} : prod))
     }
   };
+
   
   return (
     <ProductWrapper id="top-products">
