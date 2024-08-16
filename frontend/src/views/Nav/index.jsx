@@ -1,38 +1,81 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navlink,
   NavLogo,
   NavWrapper,
   BakeryLogo,
   ProfileIcon,
+  ProfileIconWrap,
+  ResponsiveNav,
 } from "../../styles/Nav";
-import Logo from "../../assests/HeroImages/Logo.svg";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
-const Nav = () => {
+import {
+  faCartShopping,
+  faBurger,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
-    const Links = [
-      { id: "#Home", name: "Home" },
-      { id: "#contact", name: "Contact Us" },
-      { id: "#About", name: "About" },
-      { id: "#profile", name: "Profile" },
-    ];
+const Nav = ({ logo, navLinks }) => {
+  const baseURL = "http://localhost:1337";
+  const [nav, setNav] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  nav
+    ? (document.body.style.overflowY = "hidden")
+    : (document.body.style.overflowY = "auto");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("top-products");
+      const sectionTop = section.getBoundingClientRect().top;
+
+      if (sectionTop <= 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleCart = () => {
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.add("openCart")
+  };
 
   return (
-    <NavWrapper>
+    <NavWrapper scrolled={scrolled}>
       <NavLogo>
-        <BakeryLogo src={Logo} alt="Logo" />
+        <BakeryLogo src={`${baseURL}${logo}`} alt="Logo" />
       </NavLogo>
       <Navlink>
-        {Links.map((link, index) => (
-          <a href={link.id} key={index}>
-            {link.name}
+        {navLinks.map((link) => (
+          <a href={link.URL} key={link.id}>
+            {link.Name}
           </a>
         ))}
       </Navlink>
-      <ProfileIcon icon={faCartShopping} />
+      {nav && (
+        <ResponsiveNav nav={nav}>
+          {navLinks.map((link) => (
+            <a href={link.URL} key={link.id}>
+              {link.Name}
+            </a>
+          ))}
+          <div onClick={() => setNav(!nav)}>
+            <ProfileIcon icon={faXmark} />
+          </div>
+        </ResponsiveNav>
+      )}
+
+      <ProfileIconWrap>
+        <ProfileIcon icon={faCartShopping} onClick={handleCart} />
+        <ProfileIcon icon={faBurger} onClick={() => setNav(!nav)} />
+      </ProfileIconWrap>
     </NavWrapper>
   );
-}
+};
 
-export default Nav
+export default Nav;

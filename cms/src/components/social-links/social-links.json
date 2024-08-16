@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_social_links_social_links",
+  "info": {
+    "displayName": "socialLinks",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "socialIcons": {
+      "displayName": "socialIcons",
+      "type": "component",
+      "repeatable": true,
+      "component": "social-icons.social-icons"
+    }
+  }
+}

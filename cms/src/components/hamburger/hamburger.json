@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_hamburger_hamburgers",
+  "info": {
+    "displayName": "Hamburger"
+  },
+  "options": {},
+  "attributes": {
+    "Logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

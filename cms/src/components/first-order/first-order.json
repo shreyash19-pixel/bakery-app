@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_first_order_first_orders",
+  "info": {
+    "displayName": "FirstOrder"
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string"
+    },
+    "Button": {
+      "type": "string"
+    }
+  }
+}

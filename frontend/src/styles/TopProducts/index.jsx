@@ -9,7 +9,7 @@ export const ProductWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  padding: 100px;
+  margin-top: 40px;
 `;
 
 export const ProductHeadline = styled.h1`
@@ -20,6 +20,11 @@ export const ProductHeadline = styled.h1`
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+
+  @media (max-width: 480px)
+  {
+    font-size: 35px;
+  }
 `;
 
 export const ProductCatalog = styled.div`
@@ -30,6 +35,12 @@ export const ProductCatalog = styled.div`
   align-items: start;
   overflow: hidden;
   padding: 20px;
+
+  @media (max-width: 768px)
+  {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 `;
 
 export const ProductCard = styled.div`
@@ -64,12 +75,22 @@ export const ProductImageDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @media (max-width: 480px)
+  {
+    gap: 10px;
+  }
 `;
 
 export const ProductTitle = styled.h2`
   font-size: 20px;
   color: #fff;
   margin: 0;
+
+  @media (max-width: 480px)
+  {
+    font-size: 15px;
+  }
 `;
 
 export const ProductPrice = styled.p`
@@ -77,6 +98,12 @@ export const ProductPrice = styled.p`
   color: #fff;
   margin: 0;
   font-weight: bold;
+
+  
+  @media (max-width: 480px)
+  {
+    font-size: 15px;
+  }
 `;
 
 export const AddToCartButton = styled.button`
@@ -91,6 +118,12 @@ export const AddToCartButton = styled.button`
   transition: background-color 0.3s ease;
   opacity: 0.8;
 
+  
+  @media (max-width: 480px)
+  {
+    font-size: 12px;
+  }
+
   &:hover {
     background-color: #0056b3;
   }
@@ -103,7 +136,7 @@ export const ProductBanner = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin: 40px;
+  margin-block: 40px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -112,6 +145,7 @@ export const ProductBanner = styled.div`
   gap: 40px;
 
   h1 {
+    width: 309px;
     color: #933c24;
     font-size: 40px;
     font-family: "Sansita Swashed", system-ui;

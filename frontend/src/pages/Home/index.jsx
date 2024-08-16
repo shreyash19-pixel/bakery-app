@@ -1,20 +1,30 @@
-import React from 'react'
-import Register from '../../components/Register'
+import {React , useState} from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from '../../components/Login'; // Ensure you have a Login component
+import Register from '../../components/Register';
+import Login from '../../components/Login';
 import Homepage from '../../components/Homepage';
-
+import NotFound from '../../components/NotFound';
+import { AppContext } from '../../ContextApi/AppContext';
 
 const Home = () => {
+  
+  const [cart, setCart] = useState([]);
+  const sharedData = {
+    cart,
+    setCart
+  };
   return (
     <BrowserRouter>
-    <Routes>
-        <Route exact path="/" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path = "/homePage" element = {<Homepage />} />
-      </Routes>
+      <AppContext.Provider value={sharedData}>
+        <Routes>
+          <Route exact path="/" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/homePage" element={<Homepage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AppContext.Provider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default Home
+export default Home;

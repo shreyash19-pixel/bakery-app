@@ -17,3 +17,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.show-cart{
+  width: 100%;
+  max-width: 350px;
+  height: 100dvh;
+  padding: 20px;
+  background-color: #e9bd8c;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 4;
+  transform: translateX(100%);
+  transition: transform .3s ease-in-out;
+}
+
+.show-cart.openCart{
+  transform: translateX(0);
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   ProductWrapper,
   ProductCatalog,
@@ -13,81 +13,57 @@ import {
   ProductBanner,
   ProductButton,
 } from "../../styles/TopProducts";
+import { AppContext } from "../../ContextApi/AppContext";
 
+const TopProducts = ({ topProducts, firstOrder }) => {
+  const baseURL = "http://localhost:1337";
+  const { cart, setCart} = useContext(AppContext);
 
-import Image1 from "../../assests/CatalogImages/Image1.jpg";
-import Image2 from "../../assests/CatalogImages/Image2.jpg";
-import Image3 from "../../assests/CatalogImages/Image3.jpg";
-import Image4 from "../../assests/CatalogImages/Image4.jpg";
-import Image5 from "../../assests/CatalogImages/Image5.jpg";
-import Image6 from "../../assests/CatalogImages/Image6.jpg";
+  const addToCart = (id) => {
 
-const demoProducts = [
-  {
-    title: "Honeycomb Bread",
-    price: "$15",
-    description: "Delicious chocolate cake with rich frosting.",
-    imageUrl:Image1,
-  },
-  {
-    title: "Danish Pastry with Fruits",
-    price: "$12",
-    description: "Fresh strawberry tart with a crispy crust.",
-    imageUrl: Image2,
-  },
-  {
-    title: "Seeded Baguette",
-    price: "$5",
-    description: "Soft and moist blueberry muffin.",
-    imageUrl: Image3,
-  },
-  {
-    title: "Round Rustic Bread",
-    price: "$10",
-    description: "Tangy and sweet lemon pie.",
-    imageUrl: Image4,
-  },
-  {
-    title: "Focaccia with Unique Cut Design",
-    price: "$10",
-    description: "Tangy and sweet lemon pie.",
-    imageUrl: Image5,
-  },
-  {
-    title: "Seeded Roll",
-    price: "$10",
-    description: "Tangy and sweet lemon pie.",
-    imageUrl: Image6,
-  },
-];
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.add("openCart")
 
-const TopProducts = () => {
+    const { Name, Price } = topProducts[id]["attributes"];
+    const ProdImg =
+      topProducts[id]["attributes"]["ProdImg"]["data"][0]["attributes"]["url"];
+
+    const isProductExists = cart.find((prod) => prod.Name === Name);
+
+    if (!isProductExists) {
+      setCart([...cart, {Name, Price, ProdImg,Quantity: 1}])
+    } else {
+      setCart(cart.map((prod) => prod.Name === Name ? {...prod, Quantity: prod.Quantity + 1} : prod))
+    }
+  };
+
+  
   return (
-    <ProductWrapper>
+    <ProductWrapper id="top-products">
       <ProductHeadline>Top Products</ProductHeadline>
       <ProductCatalog>
-        {demoProducts.map((product, index) => (
-          <ProductCard key={index}>
+        {topProducts.map((product, index) => (
+          <ProductCard key={product["attributes"].id}>
             <ProductImageWrapper>
-              <ProductImage src={product.imageUrl} alt={product.title} />
+              <ProductImage
+                src={`${baseURL}${product["attributes"].ProdImg["data"][0]["attributes"]["url"]}`}
+                alt={product["attributes"].Name}
+              />
               <ProductImageDetails>
-                <ProductPrice>{product.price}</ProductPrice>
-                <ProductTitle>{product.title}</ProductTitle>
-                <AddToCartButton>Add to Cart</AddToCartButton>
+                <ProductPrice>{product["attributes"].Price}</ProductPrice>
+                <ProductTitle>{product["attributes"].Name}</ProductTitle>
+                <AddToCartButton onClick={() => addToCart(index)}>
+                  {product["attributes"].Button}
+                </AddToCartButton>
               </ProductImageDetails>
             </ProductImageWrapper>
           </ProductCard>
         ))}
       </ProductCatalog>
       <ProductBanner>
-        <h1>
-          20% Off Your <br /> First Order
-        </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo
-          aperiam, iure provident dolore in ipsum unde
-        </p>
-        <ProductButton>Learn More</ProductButton>
+        <h1>{firstOrder.Heading}</h1>
+        <p>{firstOrder.Description}</p>
+        <ProductButton> {firstOrder.Button}</ProductButton>
       </ProductBanner>
     </ProductWrapper>
   );

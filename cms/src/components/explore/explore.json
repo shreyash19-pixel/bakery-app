@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_explore_explores",
+  "info": {
+    "displayName": "Explore",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "Categories": {
+      "displayName": "Categories",
+      "type": "component",
+      "repeatable": true,
+      "component": "categories.categories"
+    }
+  }
+}
