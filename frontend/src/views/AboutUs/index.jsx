@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   AboutButton,
   AboutUsBanner,
@@ -14,43 +14,52 @@ import {
   AboutImageDetails,
   AddToCartButton,
 } from "../../styles/AboutUs";
+import { AppContext } from "../../ContextApi/AppContext";
 
-import Image1 from "../../assests/CatalogImages/Image7.svg";
-import Image2 from "../../assests/CatalogImages/Image8.svg";
-import Image3 from "../../assests/CatalogImages/Image9.svg";
+const AboutUs = ({ aboutUs, featured }) => {
+  const baseURL = "http://localhost:1337";
+  const { cart, setCart } = useContext(AppContext);
 
-const demoProducts = [
-  {
-    title: "Puff Pastry",
-    price: "$15",
-    description: "Delicious chocolate cake with rich frosting.",
-    imageUrl: Image1,
-  },
-  {
-    title: "Doughnut",
-    price: "$12",
-    description: "Fresh strawberry tart with a crispy crust.",
-    imageUrl: Image2,
-  },
-  {
-    title: "Brownies",
-    price: "$5",
-    description: "Soft and moist blueberry muffin.",
-    imageUrl: Image3,
-  },
-];
-const AboutUs = ({aboutUs, featured}) => {
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart")
+    if (storedCart) {
+      setCart(JSON.parse(storedCart))
+    }
+  }, [setCart]);
 
-  const baseURL = "http://localhost:1337"
-  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const addTocart = (id) => {
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.add("openCart");
+
+    const { Name, Price } = featured.products.data[id]["attributes"];
+
+    const ProdImg =
+      featured.products.data[id]["attributes"]["ProdImg"]["data"][0][
+        "attributes"
+      ]["url"];
+
+    const isProductExists = cart.find((prod) => prod.Name === Name);
+
+    if (!isProductExists) {
+      setCart([...cart, { Name, Price, ProdImg, Quantity: 1 }]);
+    } else {
+      setCart(
+        cart.map((prod) =>
+          prod.Name === Name ? { ...prod, Quantity: prod.Quantity + 1 } : prod
+        )
+      );
+    }
+  };
   return (
-    <AboutWrapper>
+    <AboutWrapper id="aboutus">
       <AboutUsBanner>
         <AboutUsWrapper>
           <h1>{aboutUs.Heading}</h1>
-          <p>
-            {aboutUs.Description}
-          </p>
+          <p>{aboutUs.Description}</p>
           <AboutButton>{aboutUs.Button}</AboutButton>
         </AboutUsWrapper>
       </AboutUsBanner>
@@ -59,11 +68,16 @@ const AboutUs = ({aboutUs, featured}) => {
         {featured.products.data.map((Product, index) => (
           <AboutCard key={index}>
             <AboutImageWrapper>
-              <AboutImage src={`${baseURL}${Product["attributes"]["ProdImg"]["data"][0]["attributes"]["url"]}`} alt={Product["attributes"]["Name"]} />
+              <AboutImage
+                src={`${baseURL}${Product["attributes"]["ProdImg"]["data"][0]["attributes"]["url"]}`}
+                alt={Product["attributes"]["Name"]}
+              />
               <AboutImageDetails>
-                <AboutPrice>{Product["attributes"]["Price"]}</AboutPrice>
-                <AboutTitle>{Product["attributes"]["Name"]}</AboutTitle>
-                <AddToCartButton>{Product["attributes"]["Button"]}</AddToCartButton>
+                <AboutPrice>{Product.attributes.Price}</AboutPrice>
+                <AboutTitle>{Product.attributes.Name}</AboutTitle>
+                <AddToCartButton onClick={() => addTocart(index)}>
+                  {Product["attributes"].Button}
+                </AddToCartButton>
               </AboutImageDetails>
             </AboutImageWrapper>
           </AboutCard>

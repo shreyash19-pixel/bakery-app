@@ -6,7 +6,7 @@ const Hero = ({banner}) => {
   
 
   return (
-    <HeroInfo>
+    <HeroInfo id="home">
       <BackgroundFilter></BackgroundFilter>
       <div>
         <p>{banner.pretitle}</p>
@@ -17,7 +17,6 @@ const Hero = ({banner}) => {
         </h1>
         <InfoButton>SHOP NOW</InfoButton>
       </div>
-      
     </HeroInfo>
   );
 }

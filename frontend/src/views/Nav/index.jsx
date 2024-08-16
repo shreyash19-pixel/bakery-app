@@ -42,7 +42,7 @@ const Nav = ({ logo, navLinks }) => {
 
   const handleCart = () => {
     const prodCart = document.querySelector(".show-cart");
-    prodCart.classList.add("openCart")
+    prodCart.classList.add("openCart");
   };
 
   return (
@@ -54,6 +54,7 @@ const Nav = ({ logo, navLinks }) => {
         {navLinks.map((link) => (
           <a href={link.URL} key={link.id}>
             {link.Name}
+            
           </a>
         ))}
       </Navlink>

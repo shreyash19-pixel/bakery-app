@@ -1,17 +1,24 @@
-import {React , useState} from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Register from '../../components/Register';
-import Login from '../../components/Login';
-import Homepage from '../../components/Homepage';
-import NotFound from '../../components/NotFound';
-import { AppContext } from '../../ContextApi/AppContext';
+import { React, useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "../../components/Register";
+import Login from "../../components/Login";
+import Homepage from "../../components/Homepage";
+import NotFound from "../../components/NotFound";
+import { AppContext } from "../../ContextApi/AppContext";
 
 const Home = () => {
-  
-  const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const sharedData = {
     cart,
-    setCart
+    setCart,
   };
   return (
     <BrowserRouter>
@@ -25,6 +32,6 @@ const Home = () => {
       </AppContext.Provider>
     </BrowserRouter>
   );
-}
+};
 
 export default Home;

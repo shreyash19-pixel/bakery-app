@@ -84,6 +84,12 @@ export const AboutCatalog = styled.div`
   align-items: start;
   overflow: hidden;
   padding: 50px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+    padding:0px;
+  }
 `;
 
 export const AboutCard = styled.div`

@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   outline: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -22,6 +23,8 @@ code {
   width: 100%;
   max-width: 350px;
   height: 100dvh;
+  overflow-y: auto;
+  scrollbar-width: none;
   padding: 20px;
   background-color: #e9bd8c;
   position: fixed;

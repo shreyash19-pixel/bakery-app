@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const CartScrollWrap = styled.div`
   width: 100%;
-  max-height: 100%;
+  max-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,6 +23,7 @@ export const CartHeader = styled.div`
 
   h3 {
     font-size: 20px;
+    min-height: 40px;
   }
 `;
 

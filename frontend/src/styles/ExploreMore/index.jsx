@@ -8,6 +8,7 @@ export const ExploreWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 60px;
+  padding-inline:12px;
 
 `;
 
@@ -17,9 +18,9 @@ export const ExportLink = styled.div`
   align-items: center;
   justify-content: center;
   gap: 60px;
-  margin-right: 70px;
   border-bottom: 1px solid #c1baba9f;
   cursor: pointer;
+  overflow-y: auto;
 
   div {
     color: #5d5d5d;
@@ -42,6 +43,7 @@ export const ProductHeadline = styled.h1`
 `;
 
 export const ProductCatalog = styled.div`
+ 
 `;
 
 export const ProductCard = styled.div`
@@ -52,6 +54,11 @@ export const ProductCard = styled.div`
   align-items: start;
   overflow: hidden;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 `;
 
 export const ProductImageWrapper = styled.div`
