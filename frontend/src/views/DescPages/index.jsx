@@ -1,5 +1,6 @@
-import React from "react";
-import { DescContainer,DescWrapper,DescImgWrapper,ImgWrapper,DescImgWrapper1,Description,ButtonWrapper,Buy,Review,Img }  from "../../styles/DescPages";
+import React from "react"
+import image1 from "../../assests/CatalogImages/Image1.jpg"
+import { DescContainer,DescWrapper,DescImgWrapper,ImgWrapper,DescImgWrapper1,Description,ButtonWrapper,Buy,Review,Img, OtherProducts, DescProduct }  from "../../styles/DescPages";
 
 function DescPages (){
     return(
@@ -7,22 +8,29 @@ function DescPages (){
             <DescWrapper>
                 <DescImgWrapper>
                     <ImgWrapper>
-                        <Img>
+                        <Img src={image1}>
                         </Img>
                     </ImgWrapper>
                     <DescImgWrapper1>
                         <Description>
-                            <ButtonWrapper>
-                                <Buy>
-
-                                </Buy>
-                            </ButtonWrapper>  
+                        Vegan Chocolate Chip <br/> Cookie Dough
                         </Description>
+                        <Review>
+                            Stars and facts here
+                        </Review>
+                        <OtherProducts>
+                            Images of other product here inside circles
+                        </OtherProducts>
+                        <ButtonWrapper>
+                                <Buy>
+                                Add to Cart
+                                </Buy>
+                        </ButtonWrapper>
+                        <DescProduct>
+                            Actual Description of he product
+                        </DescProduct>
                     </DescImgWrapper1>
                 </DescImgWrapper>
-                <Review>
-                
-                </Review>
             </DescWrapper>
         </DescContainer>
     )
