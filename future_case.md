@@ -1,0 +1,1 @@
+## Same product add from different places should reflect the total QTY in the cart (First on the frontend and then backend )
