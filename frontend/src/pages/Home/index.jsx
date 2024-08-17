@@ -8,11 +8,18 @@ import { AppContext } from '../../ContextApi/AppContext';
 import DescPages from '../../views/DescPages';
 
 const Home = () => {
-  
-  const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const sharedData = {
     cart,
-    setCart
+    setCart,
   };
   return (
     <BrowserRouter>
@@ -27,6 +34,6 @@ const Home = () => {
       </AppContext.Provider>
     </BrowserRouter>
   );
-}
+};
 
 export default Home;

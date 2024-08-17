@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from "react";
 
 import {
   ExploreWrapper,
@@ -12,26 +12,51 @@ import {
   ProductImageWrapper,
   ProductImageDetails,
   AddToCartButton,
-} from '../../styles/ExploreMore';
+} from "../../styles/ExploreMore";
 
-import Loader from '../../components/Loader';
-
+import Loader from "../../components/Loader";
+import { AppContext } from "../../ContextApi/AppContext";
+import { Quantity } from "../../styles/Cart";
 
 const ExploreMore = ({ explore }) => {
   const [activeCat, setActiveCat] = useState([explore["Categories"][0]]);
   const [loading, setLoading] = useState(false);
+  const { cart, setCart } = useContext(AppContext);
 
   const setCategory = (cat) => {
     setLoading(true);
     setTimeout(() => {
       setActiveCat([explore["Categories"][cat]]);
       setLoading(false);
-    }, 500); 
+    }, 500);
   };
 
-  // console.log(explore);
-
   const baseURL = "http://localhost:1337";
+
+  const addToCart = (i, j) => {
+    
+    const prodCart = document.querySelector(".show-cart");
+    prodCart.classList.add("openCart");
+    const { Name, Price } =
+      explore["Categories"][i]["products"]["data"][j]["attributes"];
+
+    const ProdImg =
+      explore["Categories"][i]["products"]["data"][j]["attributes"]["ProdImg"][
+        "data"
+      ][0]["attributes"]["url"];
+
+    const isProductExists = cart.find((prod) => prod.Name === Name);
+
+    if (!isProductExists) {
+      setCart([...cart, { Name, Price, ProdImg, Quantity: 1 }]);
+    } else {
+      setCart(
+        cart.map((prod) =>
+          prod.Name === Name ? { ...prod, Quantity: prod.Quantity + 1 } : prod
+        )
+      );
+    }
+  };
 
   return (
     <ExploreWrapper>
@@ -49,7 +74,7 @@ const ExploreMore = ({ explore }) => {
         <ProductCatalog>
           {activeCat.map((product) => (
             <ProductCard key={product.id}>
-              {product.products.data.map((prod) => (
+              {product.products.data.map((prod, j) => (
                 <ProductImageWrapper key={prod.id}>
                   <ProductImage
                     src={`${baseURL}${prod.attributes.ProdImg.data[0].attributes.url}`}
@@ -58,7 +83,9 @@ const ExploreMore = ({ explore }) => {
                   <ProductImageDetails>
                     <ProductPrice>{prod.attributes.Price}</ProductPrice>
                     <ProductTitle>{prod.attributes.Name}</ProductTitle>
-                    <AddToCartButton>{prod.attributes.Button}</AddToCartButton>
+                    <AddToCartButton onClick={() => addToCart((product.id)-1, j)}>
+                      {prod.attributes.Button}
+                    </AddToCartButton>
                   </ProductImageDetails>
                 </ProductImageWrapper>
               ))}

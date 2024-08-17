@@ -17,51 +17,56 @@ const Footer = ({footer}) => {
     
 
   return (
-    <FooterContainer>
-        <FooterWrap>
-            <FooterSocialWrap>
-                <FooterImg src = {`${baseURL}${data["attributes"]["Logo"]["data"][0]["attributes"]["url"]}`} />
+    <FooterContainer id="contactus">
+      <FooterWrap>
+        <FooterSocialWrap>
+          <FooterImg
+            src={`${baseURL}${data["attributes"]["Logo"]["data"][0]["attributes"]["url"]}`}
+          />
 
-                <FooterSocialHeadingWrap>
-                    <FooterSocialHeading>{data["attributes"]["footer"][0]["Heading"]}</FooterSocialHeading>
-                    
-                    <SocialIconsContainer>
-                    {data["attributes"]["footer"][0]["socialIcons"].map((icons) => (
-                        <SocialIcons src = {`${baseURL}${icons["icons"]["data"][0]["attributes"]["url"]}`} />
-                    ))}
-                    </SocialIconsContainer>
-                    
-                </FooterSocialHeadingWrap>
-            </FooterSocialWrap>
-            <FooterLinksWrap>
-                <FooterContactLinksWrap>
-                    {footerLinksLHS.map((links) => (
-                    <FooterContactLinks>
-                        <FooterContactTitle>{links.Heading}</FooterContactTitle>                      
-                        <FooterLinks>
-                        {links.aboutLinks.map((link) => (
-                            <p>{link.links}</p>
-                        ))}
-                        </FooterLinks>                  
-                    </FooterContactLinks>
-                    ))}
-                </FooterContactLinksWrap>
-                <FooterContactLinks>
-                    <FooterContactTitle>{footerLinksRHS.Heading}</FooterContactTitle>
-                    {footerLinksRHS.news.map((links) => (
-                    <RecentNewsWrap>
-                        <img src = {`${baseURL}${links.image.data[0].attributes.url}`} />
-                        <div>
-                            <p>{links.date}</p>
-                            <p>{links.categoryName}</p>
-                        </div>
-                    </RecentNewsWrap>
-                    ))}
-                </FooterContactLinks>
-            </FooterLinksWrap>
-        </FooterWrap>
+          <FooterSocialHeadingWrap>
+            <FooterSocialHeading>
+              {data["attributes"]["footer"][0]["Heading"]}
+            </FooterSocialHeading>
+
+            <SocialIconsContainer>
+              {data["attributes"]["footer"][0]["socialIcons"].map((icons) => (
+                <SocialIcons
+                  src={`${baseURL}${icons["icons"]["data"][0]["attributes"]["url"]}`}
+                />
+              ))}
+            </SocialIconsContainer>
+          </FooterSocialHeadingWrap>
+        </FooterSocialWrap>
+        <FooterLinksWrap>
+          <FooterContactLinksWrap>
+            {footerLinksLHS.map((links) => (
+              <FooterContactLinks>
+                <FooterContactTitle>{links.Heading}</FooterContactTitle>
+                <FooterLinks>
+                  {links.aboutLinks.map((link) => (
+                    <p>{link.links}</p>
+                  ))}
+                </FooterLinks>
+              </FooterContactLinks>
+            ))}
+          </FooterContactLinksWrap>
+          <FooterContactLinks>
+            <FooterContactTitle>{footerLinksRHS.Heading}</FooterContactTitle>
+            {footerLinksRHS.news.map((links) => (
+              <RecentNewsWrap>
+                <img src={`${baseURL}${links.image.data[0].attributes.url}`} />
+                <div>
+                  <p>{links.date}</p>
+                  <p>{links.categoryName}</p>
+                </div>
+              </RecentNewsWrap>
+            ))}
+          </FooterContactLinks>
+        </FooterLinksWrap>
+      </FooterWrap>
     </FooterContainer>
-  )
+  );
 }
 
 export default Footer

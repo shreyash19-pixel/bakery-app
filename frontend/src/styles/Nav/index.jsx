@@ -9,9 +9,10 @@ export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 5px 15px;
   z-index: 4;
-  background-color: ${({ scrolled }) => (scrolled ? "black" : "")};
+  background-color: ${({ scrolled }) =>
+    scrolled ? "rgba(44, 45, 46, 0.329)" : ""};
 `;
 
 export const NavLogo = styled.div`
@@ -21,7 +22,7 @@ export const NavLogo = styled.div`
 `;
 
 export const BakeryLogo = styled.img`
-  width: 100px;
+  width: 120px;
 `;
 
 export const Navlink = styled.div`
@@ -36,17 +37,19 @@ export const Navlink = styled.div`
   }
 
   a {
-    font-size: 22px;
+    font-size: 25px;
     font-family: "Poppins", sans-serif;
     text-decoration: none;
     font-weight: ${({ scrolled }) => (scrolled ? 800 : 500)};
     color: white;
     transition: background-color 0.3s ease-in-out;
 
-    &:hover {
+    :active
+    {
       color: #e9bd8c;
     }
-  }
+      
+    }
 `;
 
 export const ProfileIconWrap = styled.div`
@@ -56,7 +59,7 @@ export const ProfileIconWrap = styled.div`
 
 export const ProfileIcon = styled(FontAwesomeIcon)`
   color: #e9bd8c;
-  font-size: 30px;
+  font-size: 40px;
   cursor: pointer;
   transition: color 0.3s;
 
