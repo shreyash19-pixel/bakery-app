@@ -5,6 +5,7 @@ import Login from '../../components/Login';
 import Homepage from '../../components/Homepage';
 import NotFound from '../../components/NotFound';
 import { AppContext } from '../../ContextApi/AppContext';
+import DescPages from '../../views/DescPages';
 
 const Home = () => {
   
@@ -20,6 +21,7 @@ const Home = () => {
           <Route exact path="/" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/homePage" element={<Homepage />} />
+          <Route path="/DescPage" element={<DescPages/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppContext.Provider>
